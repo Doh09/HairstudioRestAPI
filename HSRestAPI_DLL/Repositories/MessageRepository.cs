@@ -49,7 +49,7 @@ namespace HSRestAPI_DLL.Repositories
         }
 
         public Message Update(Message t)
-        {
+        {//TODO
             using (var ctx = new HairstudioDBContext())
             {
                 ctx.Entry(t).State = System.Data.Entity.EntityState.Modified;

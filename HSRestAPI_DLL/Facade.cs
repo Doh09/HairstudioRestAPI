@@ -13,6 +13,7 @@ namespace HSRestAPI_DLL
     {
         private IRepository<Hairdresser> _hairdresserRepository;
         private IRepository<Message> _messageRepository;
+        private IRepository<Appointment> _appointmentRepository;
         public IRepository<Hairdresser> GetHairdresserRepository()
         {
             return _hairdresserRepository ?? (_hairdresserRepository = new HairdresserRepository());
@@ -21,6 +22,11 @@ namespace HSRestAPI_DLL
         public IRepository<Message> GetMessageRepository()
         {
             return _messageRepository ?? (_messageRepository = new MessageRepository());
+        }
+
+        public IRepository<Appointment> GetAppointmentRepository()
+        {
+            return _appointmentRepository ?? (_appointmentRepository = new AppointmentRepository());
         }
     }
 }
