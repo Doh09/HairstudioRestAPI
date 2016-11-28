@@ -1,6 +1,5 @@
 ﻿using System;
 using NUnit.Framework;
-
 namespace NUnitTests
 {
     [TestFixture]

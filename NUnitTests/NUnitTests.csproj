@@ -50,11 +50,24 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Entities\TestAppointment.cs" />
+    <Compile Include="Entities\TestCustomer.cs" />
+    <Compile Include="Entities\TestHairdresser.cs" />
+    <Compile Include="Entities\TestMessage.cs" />
+    <Compile Include="Entities\TestServiceOffered.cs" />
+    <Compile Include="Entities\TestUser.cs" />
+    <Compile Include="Entities\TestWorkingDay.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HSRestAPI_DLL\HSRestAPI_DLL.csproj">
+      <Project>{5c1db734-55a2-4132-93c7-b428b6945924}</Project>
+      <Name>HSRestAPI_DLL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
