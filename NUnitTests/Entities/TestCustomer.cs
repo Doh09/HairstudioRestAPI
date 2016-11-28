@@ -28,7 +28,7 @@ namespace NUnitTests.Entities
             appointment1.CustomerID = 2;
 
             Appointment appointment2 = new Appointment();
-            appointment2.ID = -1;
+            appointment2.ID = -2;
             appointment2.StartTime = DateTime.Now;
             appointment2.EndTime = appointment2.StartTime; //Fix
             appointment2.EndTime.AddMinutes(30);

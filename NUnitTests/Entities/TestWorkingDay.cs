@@ -20,7 +20,7 @@ namespace NUnitTests.Entities
             WorkingDay workingDay = new WorkingDay();
             workingDay.ID = -1;
             workingDay.StartTime = DateTime.Now;
-            workingDay.EndTime = workingDay.StartTime; //Fix
+            workingDay.EndTime = DateTime.Now; //Fix
             workingDay.EndTime.AddHours(8);
 
             Assert.AreEqual(workingDay.ID, -1);
