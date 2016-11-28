@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HSRestAPI_DLL.Entities;
-
-namespace HSRestAPI_DLL
+﻿namespace HSRestAPI_DLL.Entities
 {
     public class User : AbstractEntity
     {

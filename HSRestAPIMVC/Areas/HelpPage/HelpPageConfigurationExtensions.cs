@@ -13,6 +13,7 @@ using System.Web.Http.Controllers;
 using System.Web.Http.Description;
 using HSRestAPIMVC.Areas.HelpPage.ModelDescriptions;
 using HSRestAPIMVC.Areas.HelpPage.Models;
+using HSRestAPIMVC.Areas.HelpPage.SampleGeneration;
 
 namespace HSRestAPIMVC.Areas.HelpPage
 {

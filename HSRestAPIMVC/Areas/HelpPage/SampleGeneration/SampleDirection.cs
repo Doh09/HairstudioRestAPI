@@ -1,4 +1,4 @@
-namespace HSRestAPIMVC.Areas.HelpPage
+namespace HSRestAPIMVC.Areas.HelpPage.SampleGeneration
 {
     /// <summary>
     /// Indicates whether the sample is used for request or response

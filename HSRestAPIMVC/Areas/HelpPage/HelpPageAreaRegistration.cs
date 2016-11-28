@@ -1,5 +1,6 @@
 using System.Web.Http;
 using System.Web.Mvc;
+using HSRestAPIMVC.Areas.HelpPage.App_Start;
 
 namespace HSRestAPIMVC.Areas.HelpPage
 {
