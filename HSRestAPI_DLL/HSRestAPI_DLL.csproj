@@ -57,7 +57,7 @@
     <Compile Include="Entities\Hairdresser.cs" />
     <Compile Include="Entities\Message.cs" />
     <Compile Include="Entities\ServiceOffered.cs" />
-    <Compile Include="Entities\WorkingDay.cs" />
+    <Compile Include="Entities\TimeRange.cs" />
     <Compile Include="Facade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\User.cs" />

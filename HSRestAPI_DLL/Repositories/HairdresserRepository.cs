@@ -16,7 +16,7 @@ namespace HSRestAPI_DLL.Repositories
         {
             using (var db = new HairstudioDBContext())
             {
-                return db.Hairdressers.Include("Orders").ToList();
+                return db.Hairdressers.ToList();
             }
         }
 
@@ -24,7 +24,7 @@ namespace HSRestAPI_DLL.Repositories
         {
             using (var db = new HairstudioDBContext())
             {
-                var hairdressers = db.Hairdressers.Include("Address").FirstOrDefault(x => x.ID == id);
+                var hairdressers = db.Hairdressers.FirstOrDefault(x => x.ID == id);
                 return hairdressers;
             }
         }
@@ -32,7 +32,7 @@ namespace HSRestAPI_DLL.Repositories
         {
             using (var db = new HairstudioDBContext())
             {
-                return db.Hairdressers.Include("Address").FirstOrDefault(x => x.Email == email);
+                return db.Hairdressers.FirstOrDefault(x => x.Email == email);
             }
         }
 
@@ -50,13 +50,13 @@ namespace HSRestAPI_DLL.Repositories
         {
             using (var db = new HairstudioDBContext())
             {
-                var existingHairdresser = db.Hairdressers.Include("Appointments").Include("").FirstOrDefault(x => x.ID == t.ID);
+                var existingHairdresser = db.Hairdressers.FirstOrDefault(x => x.ID == t.ID);
                 if (existingHairdresser != null)
                 {
                     existingHairdresser.Name = t.Name;
                     existingHairdresser.Email = t.Email;
-                    existingHairdresser.Appointments = t.Appointments;
-                    existingHairdresser.WorkingHours = t.WorkingHours;
+                    existingHairdresser.SetAllAppointments(t.GetAllAppointments());
+                    existingHairdresser.SetAllWorkingDays(t.GetAllWorkingDays());
                     existingHairdresser.Password = t.Password;
                     existingHairdresser.UserType = t.UserType;
                     existingHairdresser.PhoneNumber = t.PhoneNumber;
@@ -71,6 +71,7 @@ namespace HSRestAPI_DLL.Repositories
         {
             using (var db = new HairstudioDBContext())
             {
+
                 db.Hairdressers.Add(t);
                 db.SaveChanges();
                 return t;

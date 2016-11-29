@@ -9,14 +9,12 @@ namespace HSRestAPI_DLL.Entities
     public class Appointment : AbstractEntity
     {
         /*Appointment : AbstractEntity
-        - Appointment start time
-        - Appointment end time
-        - HairdresserID
-        - CustomerID
+        - TimeRange
+        - Hairdresser
+        - Customer
          */
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
-        public int HairdresserID { get; set; }
-        public int CustomerID { get; set; }
+        public TimeRange TimeAndDate { get; set; }
+        public Hairdresser Hairdresser { get; set; }
+        public Customer Customer { get; set; }
     }
 }

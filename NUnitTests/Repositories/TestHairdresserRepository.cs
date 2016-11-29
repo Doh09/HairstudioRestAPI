@@ -20,14 +20,12 @@ namespace NUnitTests.Repositories
             Hairdresser hairdresser = new Hairdresser()
             {
                 ID = 33,
-                Appointments = new Dictionary<DateTime, Appointment>(),
                 Name = "Hairdresser1",
                 UserType = "Hairdresser",
                 Email = "Hairdresser@gmail.com",
                 Username = "Hairdresser1Username",
                 Password = "Hairdresser1Password",
                 PhoneNumber = 12344321,
-                WorkingHours = new Dictionary<DateTime, WorkingDay>()
             };
             //Test GetAll();
             Assert.AreEqual(0, hairdresserRepo.GetAll().Count);
