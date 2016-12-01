@@ -9,32 +9,32 @@ namespace HSRestAPI_DLL.Entities
     public class TimeRange : AbstractEntity
     {
         /*TimeRange : AbstractEntity
-        - Date
+        - TheDate
         - Start time
         - End time
          */
-        private DateTime Date { get; set; }
+        public DateTime TheDate { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
 
-        #region Date
+        #region TheDate
         /// <summary>
         /// Gets the date of the TimeRange object.
-        /// The time of the DateTime object used is set to 00:00:00, so only the Date is used.
+        /// The time of the DateTime object used is set to 00:00:00, so only the TheDate is used.
         /// </summary>
         /// <returns></returns>
         public DateTime GetDate()
         {
-            return Date.Date;//Ensure only return date and not time.
+            return TheDate.Date;//Ensure only return date and not time.
         }
 
         /// <summary>
         /// Sets the date of the TimeRange object.
-        /// The time of the DateTime object used is set to 00:00:00, so only the Date is used.
+        /// The time of the DateTime object used is set to 00:00:00, so only the TheDate is used.
         /// </summary>
         public void SetDate(DateTime date)
         {
-            Date = date.Date;
+            TheDate = date.Date;
         }
         #endregion
     }

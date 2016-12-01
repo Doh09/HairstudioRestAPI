@@ -13,7 +13,7 @@ namespace HSRestAPI_DLL.Entities
         - Hairdresser
         - Customer
          */
-        public TimeRange TimeAndDate { get; set; }
+        public virtual TimeRange TimeRange { get; set; }
         public Hairdresser Hairdresser { get; set; }
         public Customer Customer { get; set; }
     }

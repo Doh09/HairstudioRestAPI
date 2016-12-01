@@ -6,39 +6,38 @@ using System.Threading.Tasks;
 using HSRestAPI_DLL.DB;
 using HSRestAPI_DLL.Entities;
 using HSRestAPI_DLL.Interfaces;
-using System.Data.Entity;
 
 namespace HSRestAPI_DLL.Repositories
 {//TODO
-    class AppointmentRepository : IRepository<Appointment>
+    class TimeRangeRepository : IRepository<TimeRange>
     {
-        public Appointment Create(Appointment t)
+        public TimeRange Create(TimeRange t)
         {
             using (var ctx = new HairstudioDBContext())
             {
-                ctx.Appointments.Add(t);
+                ctx.TimeRanges.Add(t);
                 ctx.SaveChanges();
                 return t;
             }
         }
 
-        public Appointment Get(int id)
+        public TimeRange Get(int id)
         {
             using (var ctx = new HairstudioDBContext())
             {
-                return ctx.Appointments.Include(t => t.TimeRange).FirstOrDefault(x => x.ID == id);
+                return ctx.TimeRanges.FirstOrDefault(x => x.ID == id);
             }
         }
 
-        public List<Appointment> GetAll()
+        public List<TimeRange> GetAll()
         {
             using (var ctx = new HairstudioDBContext())
             {
-                return ctx.Appointments.Include(t => t.TimeRange).ToList();
+                return ctx.TimeRanges.ToList();
             }
         }
 
-        public bool Remove(Appointment t)
+        public bool Remove(TimeRange t)
         {
             using (var ctx = new HairstudioDBContext())
             {
@@ -48,7 +47,7 @@ namespace HSRestAPI_DLL.Repositories
             }
         }
 
-        public Appointment Update(Appointment t)
+        public TimeRange Update(TimeRange t)
         {//TODO
             using (var ctx = new HairstudioDBContext())
             {

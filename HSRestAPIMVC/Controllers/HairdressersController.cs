@@ -55,7 +55,11 @@ namespace HSRestAPIMVC.Controllers
                 return BadRequest();
             }
 
-            _hr.Update(hairdresser);
+            if (_hr.Update(hairdresser) == null)
+            {
+                return NotFound();
+            }
+            ;
             //db.Entry(hairdresser).State = EntityState.Modified;
 
             //try

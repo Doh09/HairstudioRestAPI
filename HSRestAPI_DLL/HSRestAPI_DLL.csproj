@@ -67,7 +67,7 @@
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Repositories\MessageRepository.cs" />
     <Compile Include="Repositories\ServiceOfferedRepository.cs" />
-    <Compile Include="Repositories\WorkingDayRepository.cs" />
+    <Compile Include="Repositories\TimeRangeRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

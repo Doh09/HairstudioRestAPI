@@ -11,38 +11,25 @@ namespace HSRestAPI_DLL.Entities
         /*Customer : User //ID and other variables inherited are tested in User.
         - Appointments
          */
-        private Dictionary<DateTime, Appointment> Appointments = new Dictionary<DateTime, Appointment>();
+        public List<Appointment> Appointments { get; set; }
 
         #region Appointments
         /// <summary>
-        /// Gets an appointment, using the DateTime object as key.
-        /// The time of the DateTime object used is set to 00:00:00, so only the Date is used.
+        /// Gets an appointment, using the DateTime object as search parameter.
         /// </summary>
         /// <param name="date"></param>
         /// <returns></returns>
         public Appointment GetAppointment(DateTime date)
         {
-            var onlyDate = date.Date; //Ensure dictionary look-up only uses date and not time.
-            return Appointments[onlyDate];
+            return Appointments.FirstOrDefault(a => a.TimeRange.GetDate().Date == date.Date);
         }
 
         /// <summary>
-        /// Returns a dictionary with all appointments for this customer.
+        /// Adds the given appointment to the Hairdressers appointment list.
         /// </summary>
-        /// <returns></returns>
-        public Dictionary<DateTime, Appointment> GetAllAppointments()
+        public void AddAppointment(Appointment appointment)
         {
-            return Appointments;
-        }
-
-        /// <summary>
-        /// Sets a given appointment, using the Date from the Appointment object as key.
-        /// The time of the DateTime object used is set to 00:00:00, so only the Date is used.
-        /// </summary>
-        public void SetAppointment(Appointment appointment)
-        {
-            var date = appointment.TimeAndDate.GetDate().Date;
-            Appointments.Add(date, appointment);
+            Appointments.Add(appointment);
         }
         #endregion
     }

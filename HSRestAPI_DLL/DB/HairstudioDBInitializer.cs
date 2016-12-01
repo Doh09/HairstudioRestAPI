@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HSRestAPI_DLL.DB
 {
-    class HairstudioDBInitializer : CreateDatabaseIfNotExists<HairstudioDBContext>
+    class HairstudioDBInitializer : DropCreateDatabaseIfModelChanges<HairstudioDBContext>
     {
         protected override void Seed(HairstudioDBContext db)
         {

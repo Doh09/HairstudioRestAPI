@@ -12,73 +12,43 @@ namespace HSRestAPI_DLL.Entities
         - Working hours
         - Appointments
          */
-        internal Dictionary<DateTime, TimeRange> WorkingDays = new Dictionary<DateTime, TimeRange>();
-        internal Dictionary<DateTime, Appointment> Appointments = new Dictionary<DateTime, Appointment>();
+        public virtual List<TimeRange> WorkingDays { get; set; }
+        //public List<TimeRange> WorkingDays = new List<TimeRange>();
+        public virtual List<Appointment> Appointments { get; set; }
+        //public List<Appointment> Appointments = new List<Appointment>();
 
         #region Working days
         public TimeRange GetWorkingDay(DateTime date)
         {
-            var onlyDate = date.Date; //Ensure dictionary look-up only uses date and not time.
-            return WorkingDays[onlyDate];
+            return WorkingDays.FirstOrDefault(a => a.GetDate().Date == date.Date);
         }
-
-        public Dictionary<DateTime, TimeRange> GetAllWorkingDays()
-        {
-            return WorkingDays;
-        }
-
-        public void SetAllWorkingDays(Dictionary<DateTime, TimeRange> newWorkingDays)
-        {
-            WorkingDays = newWorkingDays;
-        }
-
 
         /// <summary>
-        /// Sets a given working day, using the Date from the WorkingDay object as key.
-        /// The time of the DateTime object used is set to 00:00:00, so only the Date is used.
+        /// Adds a given working day.
         /// </summary>
-        public void SetWorkingDay(TimeRange workingDay)
+        public void AddWorkingDay(TimeRange workingDay)
         {
-            var date = workingDay.GetDate().Date;
-            WorkingDays.Add(date, workingDay);
+            WorkingDays.Add(workingDay);
         }
         #endregion
 
+        #region Appointments
         /// <summary>
-        /// Gets an appointment, using the DateTime object as key.
-        /// The time of the DateTime object used is set to 00:00:00, so only the Date is used.
+        /// Gets an appointment, using the DateTime object as search parameter.
         /// </summary>
         /// <param name="date"></param>
         /// <returns></returns>
-        #region Appointments
         public Appointment GetAppointment(DateTime date)
         {
-            var onlyDate = date.Date; //Ensure dictionary look-up only uses date and not time.
-            return Appointments[onlyDate];
+            return Appointments.FirstOrDefault(a => a.TimeRange.GetDate().Date == date.Date);
         }
 
         /// <summary>
-        /// Returns a dictionary with all appointments for this hairdresser.
+        /// Adds the given appointment to the Hairdressers appointment list.
         /// </summary>
-        /// <returns></returns>
-        public Dictionary<DateTime, Appointment> GetAllAppointments()
+        public void AddAppointment(Appointment appointment)
         {
-            return Appointments;
-        }
-
-        public void SetAllAppointments(Dictionary<DateTime, Appointment> newAppointments)
-        {
-            Appointments = newAppointments;
-        }
-
-        /// <summary>
-        /// Sets a given appointment, using the Date from the Appointment object as key.
-        /// The time of the DateTime object used is set to 00:00:00, so only the Date is used.
-        /// </summary>
-        public void SetAppointment(Appointment appointment)
-        {
-            var date = appointment.TimeAndDate.GetDate().Date;
-            Appointments.Add(date, appointment);
+            Appointments.Add(appointment);
         }
         #endregion
 
