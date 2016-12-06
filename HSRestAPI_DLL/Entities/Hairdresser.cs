@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,8 +13,10 @@ namespace HSRestAPI_DLL.Entities
         - Working hours
         - Appointments
          */
-        public Dictionary<DateTime, WorkingDay> WorkingHours { get; set; }
-        public Dictionary<DateTime, Appointment> Appointments { get; set; }
+         [InverseProperty("")]
+        public virtual List<TimeRange> WorkingDays { get; set; }
+        //public List<TimeRange> WorkingDays = new List<TimeRange>();
+        public virtual List<Appointment> Appointments { get; set; }
 
     }
 }

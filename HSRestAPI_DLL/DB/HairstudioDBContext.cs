@@ -22,7 +22,7 @@ namespace HSRestAPI_DLL.DB
         public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<ServiceOffered> ServicesOffered { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<WorkingDay> WorkingDays { get; set; }
+        public virtual DbSet<TimeRange> WorkingDays { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -8,34 +8,34 @@ using HSRestAPI_DLL.Interfaces;
 
 namespace HSRestAPI_DLL.Repositories
 {//TODO
-    class WorkingDayRepository : IRepository<WorkingDay>
+    class TimeRangeRepository : IRepository<TimeRange>
     {
-        public List<WorkingDay> GetAll()
+        public List<TimeRange> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public WorkingDay Get(int id)
+        public TimeRange Get(int id)
         {
             throw new NotImplementedException();
         }
 
-        public WorkingDay Get(string email)
+        public TimeRange Get(string email)
         {
             throw new NotImplementedException();
         }
 
-        public bool Remove(WorkingDay t)
+        public bool Remove(TimeRange t)
         {
             throw new NotImplementedException();
         }
 
-        public WorkingDay Update(WorkingDay t)
+        public TimeRange Update(TimeRange t)
         {
             throw new NotImplementedException();
         }
 
-        public WorkingDay Create(WorkingDay t)
+        public TimeRange Create(TimeRange t)
         {
             throw new NotImplementedException();
         }

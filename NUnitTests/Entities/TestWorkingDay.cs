@@ -17,7 +17,7 @@ namespace NUnitTests.Entities
             - Start time
             - End time
              */
-            WorkingDay workingDay = new WorkingDay();
+            TimeRange workingDay = new TimeRange();
             workingDay.ID = -1;
             workingDay.StartTime = DateTime.Now;
             workingDay.EndTime = DateTime.Now; //Fix

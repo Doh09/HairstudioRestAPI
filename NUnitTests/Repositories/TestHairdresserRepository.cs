@@ -27,7 +27,7 @@ namespace NUnitTests.Repositories
                 Username = "Hairdresser1Username",
                 Password = "Hairdresser1Password",
                 PhoneNumber = 12344321,
-                WorkingHours = new Dictionary<DateTime, WorkingDay>()
+                WorkingHours = new Dictionary<DateTime, TimeRange>()
             };
             //Test GetAll();
             Assert.AreEqual(0, hairdresserRepo.GetAll().Count);

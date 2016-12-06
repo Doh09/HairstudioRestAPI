@@ -19,7 +19,7 @@ namespace NUnitTests.Entities
             - Appointments
              */
             Hairdresser hairdresser = new Hairdresser();
-            hairdresser.WorkingHours = new Dictionary<DateTime, WorkingDay>();
+            hairdresser.WorkingHours = new Dictionary<DateTime, TimeRange>();
                 //Class that holds the start and end times of the working day.
             hairdresser.Appointments = new Dictionary<DateTime, Appointment>();
             //Dictionary of appointments
