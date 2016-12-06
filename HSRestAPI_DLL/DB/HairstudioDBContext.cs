@@ -12,7 +12,7 @@ namespace HSRestAPI_DLL.DB
     {
         public HairstudioDBContext() : base("Hairstudio")
         {
-            //Configuration.ProxyCreationEnabled = false;
+            Configuration.ProxyCreationEnabled = false;
             Database.SetInitializer(new HairstudioDBInitializer());
         }
 
@@ -40,14 +40,7 @@ namespace HSRestAPI_DLL.DB
                         //.HasForeignKey(m => m.Customer.ID)
                         .WillCascadeOnDelete(false)
                         ;
-
-            //http://stackoverflow.com/questions/9613421/map-a-dictionary-in-entity-framework-code-first-approach
-            //one-to-many 
-            //modelBuilder.Entity<Appointment>()
-            //    //.HasRequired<Customer>(a => a.Customer).WithMany(c => c.GetAllAppointments().Values)
-            //            .HasRequired<Hairdresser>(s => s.Hairdresser) // Student entity requires Standard 
-            //            .WithMany(s => s.Appointments.Values); // Standard entity includes many Students entities
-            ////modelBuilder.Entity<Order>().HasMany(x => x.Movies).WithMany();
+            
             base.OnModelCreating(modelBuilder);
         }
     }

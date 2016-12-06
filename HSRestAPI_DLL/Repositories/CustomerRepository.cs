@@ -19,6 +19,8 @@ namespace HSRestAPI_DLL.Repositories
                 return db.Customers
                     .Include(h => h.Appointments.Select(c => c.TimeRange))
                     .Include(h => h.Appointments.Select(c => c.Hairdresser))
+                    .Include(h => h.Appointments)
+                    //.Include(h => h.Appointments.Select(c => c.Customer))
                     .ToList();
             }
         }

@@ -33,7 +33,11 @@ namespace HSRestAPI_DLL.Repositories
         {
             using (var ctx = new HairstudioDBContext())
             {
-                return ctx.Appointments.Include(t => t.TimeRange).FirstOrDefault(x => x.ID == id);
+                return ctx.Appointments
+                    .Include(t => t.TimeRange)
+                    .Include(t => t.Hairdresser)
+                    .Include(t => t.Customer)
+                    .FirstOrDefault(x => x.ID == id);
             }
         }
 
@@ -41,7 +45,11 @@ namespace HSRestAPI_DLL.Repositories
         {
             using (var ctx = new HairstudioDBContext())
             {
-                return ctx.Appointments.Include(t => t.TimeRange).ToList();
+                return ctx.Appointments
+                    .Include(t => t.TimeRange)
+                    .Include(t => t.Hairdresser)
+                    .Include(t => t.Customer)
+                    .ToList();
             }
         }
 
