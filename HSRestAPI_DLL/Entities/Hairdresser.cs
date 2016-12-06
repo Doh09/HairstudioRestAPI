@@ -13,7 +13,7 @@ namespace HSRestAPI_DLL.Entities
         - Working hours
         - Appointments
          */
-         [InverseProperty("")]
+         //[InverseProperty("")]
         public virtual List<TimeRange> WorkingDays { get; set; }
         //public List<TimeRange> WorkingDays = new List<TimeRange>();
         public virtual List<Appointment> Appointments { get; set; }
