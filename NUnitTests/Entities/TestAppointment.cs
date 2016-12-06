@@ -22,17 +22,17 @@ namespace NUnitTests.Entities
              */
             Appointment appointment = new Appointment();
             appointment.ID = -1;
-            appointment.StartTime = DateTime.Now;
-            appointment.EndTime = appointment.StartTime; //Fix
-            appointment.EndTime.AddMinutes(30);
-            appointment.HairdresserID = 1;
-            appointment.CustomerID = 2;
+            appointment.TimeRange.StartTime = DateTime.Now;
+            appointment.TimeRange.EndTime = appointment.TimeRange.StartTime; //Fix
+            appointment.TimeRange.EndTime.AddMinutes(30);
+            appointment.Hairdresser = new Hairdresser();
+            appointment.Customer = new Customer();
 
             Assert.AreEqual(appointment.ID, -1);
-            Assert.AreEqual(appointment.StartTime.Date, DateTime.Now.Date);
-            Assert.AreEqual(appointment.EndTime.Date, DateTime.Now.Date);
-            Assert.AreEqual(appointment.HairdresserID, 1);
-            Assert.AreEqual(appointment.CustomerID, 2);
+            Assert.AreEqual(appointment.TimeRange.StartTime.Date, DateTime.Now.Date);
+            Assert.AreEqual(appointment.TimeRange.EndTime.Date, DateTime.Now.Date);
+            Assert.IsNotNull(appointment.Hairdresser);
+            Assert.IsNotNull(appointment.Customer);
         }
     }
 }

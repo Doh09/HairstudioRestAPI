@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HSRestAPI_DLL.Entities;
 
 namespace HSRestAPI_DLL.DB
 {
@@ -11,6 +12,29 @@ namespace HSRestAPI_DLL.DB
     {
         protected override void Seed(HairstudioDBContext db)
         {
+            var hairdresser = new Hairdresser();
+            hairdresser.ID = 0;
+            hairdresser.Appointments = new List<Appointment>();
+            hairdresser.WorkingDays = new List<TimeRange>();
+            hairdresser.Email = "HDEmail@gmail.com";
+            hairdresser.Name = "Rita Jørgensen";
+            hairdresser.Password = "LeStronkPW";
+            hairdresser.PhoneNumber = 88888888;
+            hairdresser.UserType = "hairdresser";
+            hairdresser.Username = "HDusername";
+            
+            var customer = new Customer();
+            customer.ID = 0;
+            customer.Appointments = new List<Appointment>();
+            customer.Email = "CEmail@gmail.com";
+            customer.Name = "Roland Ripoff";
+            customer.Password = "LeWeakassPW";
+            customer.PhoneNumber = 11111111;
+            customer.UserType = "customer";
+            customer.Username = "CUsername";
+
+            db.Hairdressers.Add(hairdresser);
+            db.Customers.Add(customer);
             //var genre1 = new Genre() { ID = 1, Name = "Adventure" };
             //db.Genres.Add(genre1);
             //db.Movies.Add(new Movie()

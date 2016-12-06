@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HSRestAPI_DLL.DB;
 using HSRestAPI_DLL.Entities;
 using HSRestAPI_DLL.Interfaces;
 
@@ -10,34 +11,50 @@ namespace HSRestAPI_DLL.Repositories
 {//TODO
     class TimeRangeRepository : IRepository<TimeRange>
     {
-        public List<TimeRange> GetAll()
+        public TimeRange Create(TimeRange t)
         {
-            throw new NotImplementedException();
+            using (var ctx = new HairstudioDBContext())
+            {
+                ctx.TimeRanges.Add(t);
+                ctx.SaveChanges();
+                return t;
+            }
         }
 
         public TimeRange Get(int id)
         {
-            throw new NotImplementedException();
+            using (var ctx = new HairstudioDBContext())
+            {
+                return ctx.TimeRanges.FirstOrDefault(x => x.ID == id);
+            }
         }
 
-        public TimeRange Get(string email)
+        public List<TimeRange> GetAll()
         {
-            throw new NotImplementedException();
+            using (var ctx = new HairstudioDBContext())
+            {
+                return ctx.TimeRanges.ToList();
+            }
         }
 
         public bool Remove(TimeRange t)
         {
-            throw new NotImplementedException();
+            using (var ctx = new HairstudioDBContext())
+            {
+                ctx.Entry(t).State = System.Data.Entity.EntityState.Deleted;
+                ctx.SaveChanges();
+                return true;
+            }
         }
 
         public TimeRange Update(TimeRange t)
-        {
-            throw new NotImplementedException();
-        }
-
-        public TimeRange Create(TimeRange t)
-        {
-            throw new NotImplementedException();
+        {//TODO
+            using (var ctx = new HairstudioDBContext())
+            {
+                ctx.Entry(t).State = System.Data.Entity.EntityState.Modified;
+                ctx.SaveChanges();
+                return t;
+            }
         }
     }
 }

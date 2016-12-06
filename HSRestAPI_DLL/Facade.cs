@@ -14,6 +14,8 @@ namespace HSRestAPI_DLL
         private IRepository<Hairdresser> _hairdresserRepository;
         private IRepository<Message> _messageRepository;
         private IRepository<Appointment> _appointmentRepository;
+        private IRepository<TimeRange> _timeRangeRepository;
+        private IRepository<Customer> _customerRepository;
         public IRepository<Hairdresser> GetHairdresserRepository()
         {
             return _hairdresserRepository ?? (_hairdresserRepository = new HairdresserRepository());
@@ -27,6 +29,14 @@ namespace HSRestAPI_DLL
         public IRepository<Appointment> GetAppointmentRepository()
         {
             return _appointmentRepository ?? (_appointmentRepository = new AppointmentRepository());
+        }
+        public IRepository<TimeRange> GetTimeRangeRepository()
+        {
+            return _timeRangeRepository ?? (_timeRangeRepository = new TimeRangeRepository());
+        }
+        public IRepository<Customer> GetCustomerRepository()
+        {
+            return _customerRepository ?? (_customerRepository = new CustomerRepository());
         }
     }
 }

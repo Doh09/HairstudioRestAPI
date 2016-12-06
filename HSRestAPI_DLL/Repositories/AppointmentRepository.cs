@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using HSRestAPI_DLL.DB;
 using HSRestAPI_DLL.Entities;
 using HSRestAPI_DLL.Interfaces;
+using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Infrastructure;
 
 namespace HSRestAPI_DLL.Repositories
 {//TODO
@@ -15,6 +18,11 @@ namespace HSRestAPI_DLL.Repositories
         {
             using (var ctx = new HairstudioDBContext())
             {
+                var hairdresser = ctx.Hairdressers.FirstOrDefault(x => x.ID == t.Hairdresser.ID);
+                var customer = ctx.Customers.FirstOrDefault(x => x.ID == t.Customer.ID);
+                
+                t.Hairdresser = hairdresser;
+                t.Customer = customer;
                 ctx.Appointments.Add(t);
                 ctx.SaveChanges();
                 return t;
@@ -25,7 +33,7 @@ namespace HSRestAPI_DLL.Repositories
         {
             using (var ctx = new HairstudioDBContext())
             {
-                return ctx.Appointments.FirstOrDefault(x => x.ID == id);
+                return ctx.Appointments.Include(t => t.TimeRange).FirstOrDefault(x => x.ID == id);
             }
         }
 
@@ -33,7 +41,7 @@ namespace HSRestAPI_DLL.Repositories
         {
             using (var ctx = new HairstudioDBContext())
             {
-                return ctx.Appointments.ToList();
+                return ctx.Appointments.Include(t => t.TimeRange).ToList();
             }
         }
 
@@ -51,7 +59,18 @@ namespace HSRestAPI_DLL.Repositories
         {//TODO
             using (var ctx = new HairstudioDBContext())
             {
-                ctx.Entry(t).State = System.Data.Entity.EntityState.Modified;
+                var ea = ctx.Appointments //ea = existing appointment
+                    .Include(a => a.Hairdresser)
+                    .Include(a => a.Customer)
+                    .Include(a => a.TimeRange)
+                    .FirstOrDefault(x => x.ID == t.ID);
+
+                EntityUpdater.UpdateAppointment(ea, t);
+                var objectStateManager = ((IObjectContextAdapter)ctx).ObjectContext.ObjectStateManager;
+                objectStateManager.ChangeObjectState(ea, EntityState.Modified);
+                //ea.TimeRange.TheDate = t.TimeRange.TheDate; //<--- Works, with only a.TimeRange included.
+                //ea.Hairdresser = t.Hairdresser; //check if new hairdresser/customer is made, 
+                //or system is intelligent and knows from ID not to create more tables.
                 ctx.SaveChanges();
                 return t;
             }

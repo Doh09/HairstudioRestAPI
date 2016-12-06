@@ -56,7 +56,7 @@
     <Compile Include="Entities\TestMessage.cs" />
     <Compile Include="Entities\TestServiceOffered.cs" />
     <Compile Include="Entities\TestUser.cs" />
-    <Compile Include="Entities\TestWorkingDay.cs" />
+    <Compile Include="Entities\TestTimeRange.cs" />
     <Compile Include="Repositories\TestHairdresserRepository.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
