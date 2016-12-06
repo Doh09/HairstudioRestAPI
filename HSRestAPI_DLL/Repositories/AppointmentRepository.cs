@@ -19,8 +19,7 @@ namespace HSRestAPI_DLL.Repositories
             using (var ctx = new HairstudioDBContext())
             {
                 var hairdresser = ctx.Hairdressers.FirstOrDefault(x => x.ID == t.Hairdresser.ID);
-                var customer = ctx.Customers.FirstOrDefault(x => x.ID == t.Customer.ID);
-                
+                var customer = ctx.Customers.FirstOrDefault(x => x.ID == t.Customer.ID);                
                 t.Hairdresser = hairdresser;
                 t.Customer = customer;
                 ctx.Appointments.Add(t);
@@ -72,7 +71,10 @@ namespace HSRestAPI_DLL.Repositories
                     .Include(a => a.Customer)
                     .Include(a => a.TimeRange)
                     .FirstOrDefault(x => x.ID == t.ID);
-
+                var hairdresser = ctx.Hairdressers.FirstOrDefault(x => x.ID == t.Hairdresser.ID);
+                var customer = ctx.Customers.FirstOrDefault(x => x.ID == t.Customer.ID);
+                ea.Hairdresser = hairdresser;
+                ea.Customer = customer;
                 EntityUpdater.UpdateAppointment(ea, t);
                 var objectStateManager = ((IObjectContextAdapter)ctx).ObjectContext.ObjectStateManager;
                 objectStateManager.ChangeObjectState(ea, EntityState.Modified);

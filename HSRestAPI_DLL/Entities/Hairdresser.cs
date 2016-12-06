@@ -15,9 +15,9 @@ namespace HSRestAPI_DLL.Entities
          */
 
         
-        public virtual List<TimeRange> WorkingDays { get; set; }
+        public virtual List<TimeRange> WorkingDays { get; set; } = new List<TimeRange>();
         //public List<TimeRange> WorkingDays = new List<TimeRange>();
-        public virtual List<Appointment> Appointments { get; set; }
+        public virtual List<Appointment> Appointments { get; set; } = new List<Appointment>();
         //public List<Appointment> Appointments = new List<Appointment>();
         
     }

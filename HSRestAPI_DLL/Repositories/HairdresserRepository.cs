@@ -64,14 +64,20 @@ namespace HSRestAPI_DLL.Repositories
                     eh.Name = t.Name;
                     eh.Email = t.Email;
                     eh.Appointments = new List<Appointment>();
-                    foreach (var a in t.Appointments)
+                    if (t.Appointments != null)
                     {
-                        eh.Appointments.Add(a);
+                        foreach (var a in t.Appointments)
+                        {
+                            eh.Appointments.Add(a);
+                        }
                     }
                     eh.WorkingDays = new List<TimeRange>();
-                    foreach (var w in t.WorkingDays)
+                    if (t.WorkingDays != null)
                     {
-                        eh.WorkingDays.Add(w);
+                        foreach (var w in t.WorkingDays)
+                        {
+                            eh.WorkingDays.Add(w);
+                        }
                     }
                     eh.Password = t.Password;
                     eh.UserType = t.UserType;
@@ -84,7 +90,7 @@ namespace HSRestAPI_DLL.Repositories
                             eh.Appointments.Add(db.Appointments.FirstOrDefault(x => x.ID == a.ID));
                         }
                 }
-     
+
                 //db.Entry(existingHairdresser).State = EntityState.Modified;
 
                 //foreach (var a in existingHairdresser.Appointments)
