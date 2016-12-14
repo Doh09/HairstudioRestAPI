@@ -14,7 +14,7 @@ namespace NUnitTests.Entities
         [Test]
         public void TestProperties()
         {
-            /*User : AbstractEntity
+            /*User : IEntity
             - Username
             - Password
             - Name

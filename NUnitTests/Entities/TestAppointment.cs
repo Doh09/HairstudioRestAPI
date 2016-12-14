@@ -14,7 +14,7 @@ namespace NUnitTests.Entities
         [Test]
         public void TestProperties()
         {
-            /*Appointment : AbstractEntity
+            /*Appointment : IEntity
             - Appointment start time
             - Appointment end time
             - HairdresserID

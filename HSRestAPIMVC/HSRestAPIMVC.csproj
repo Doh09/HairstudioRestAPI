@@ -240,6 +240,7 @@
     <Compile Include="Controllers\HairdressersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
+    <Compile Include="Controllers\ServicesOfferedController.cs" />
     <Compile Include="Controllers\TimeRangesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">

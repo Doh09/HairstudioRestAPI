@@ -14,46 +14,46 @@ namespace HSRestAPI_DLL.Repositories
     {
         public Message Create(Message t)
         {
-            using (var ctx = new HairstudioDBContext())
+            using (var db = new HairstudioDBContext())
             {
-                ctx.Messages.Add(t);
-                ctx.SaveChanges();
+                db.Messages.Add(t);
+                db.SaveChanges();
                 return t;
             }
         }
 
         public Message Get(int id)
         {
-            using (var ctx = new HairstudioDBContext())
+            using (var db = new HairstudioDBContext())
             {
-                return ctx.Messages.FirstOrDefault(x => x.ID == id);
+                return db.Messages.FirstOrDefault(x => x.ID == id);
             }
         }
 
         public List<Message> GetAll()
         {
-            using (var ctx = new HairstudioDBContext())
+            using (var db = new HairstudioDBContext())
             {
-                return ctx.Messages.ToList();
+                return db.Messages.ToList();
             }
         }
 
         public bool Remove(Message t)
         {
-            using (var ctx = new HairstudioDBContext())
+            using (var db = new HairstudioDBContext())
             {
-                ctx.Entry(t).State = System.Data.Entity.EntityState.Deleted;
-                ctx.SaveChanges();
+                db.Entry(t).State = System.Data.Entity.EntityState.Deleted;
+                db.SaveChanges();
                 return true;
             }
         }
 
         public Message Update(Message t)
         {//TODO
-            using (var ctx = new HairstudioDBContext())
+            using (var db = new HairstudioDBContext())
             {
-                ctx.Entry(t).State = System.Data.Entity.EntityState.Modified;
-                ctx.SaveChanges();
+                db.Entry(t).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
                 return t;
             }
         }

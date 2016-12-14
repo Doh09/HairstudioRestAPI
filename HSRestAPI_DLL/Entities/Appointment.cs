@@ -7,9 +7,12 @@ using System.Threading.Tasks;
 
 namespace HSRestAPI_DLL.Entities
 {
-    public class Appointment : AbstractEntity
+    public class Appointment : IEntity
     {
-        /*Appointment : AbstractEntity
+        #region IEntity
+        public int ID { get; set; }
+        #endregion
+        /*Appointment : IEntity
         - TimeRange
         - Hairdresser
         - Customer

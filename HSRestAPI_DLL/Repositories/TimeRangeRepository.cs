@@ -13,46 +13,46 @@ namespace HSRestAPI_DLL.Repositories
     {
         public TimeRange Create(TimeRange t)
         {
-            using (var ctx = new HairstudioDBContext())
+            using (var db = new HairstudioDBContext())
             {
-                ctx.TimeRanges.Add(t);
-                ctx.SaveChanges();
+                db.TimeRanges.Add(t);
+                db.SaveChanges();
                 return t;
             }
         }
 
         public TimeRange Get(int id)
         {
-            using (var ctx = new HairstudioDBContext())
+            using (var db = new HairstudioDBContext())
             {
-                return ctx.TimeRanges.FirstOrDefault(x => x.ID == id);
+                return db.TimeRanges.FirstOrDefault(x => x.ID == id);
             }
         }
 
         public List<TimeRange> GetAll()
         {
-            using (var ctx = new HairstudioDBContext())
+            using (var db = new HairstudioDBContext())
             {
-                return ctx.TimeRanges.ToList();
+                return db.TimeRanges.ToList();
             }
         }
 
         public bool Remove(TimeRange t)
         {
-            using (var ctx = new HairstudioDBContext())
+            using (var db = new HairstudioDBContext())
             {
-                ctx.Entry(t).State = System.Data.Entity.EntityState.Deleted;
-                ctx.SaveChanges();
+                db.Entry(t).State = System.Data.Entity.EntityState.Deleted;
+                db.SaveChanges();
                 return true;
             }
         }
 
         public TimeRange Update(TimeRange t)
         {//TODO
-            using (var ctx = new HairstudioDBContext())
+            using (var db = new HairstudioDBContext())
             {
-                ctx.Entry(t).State = System.Data.Entity.EntityState.Modified;
-                ctx.SaveChanges();
+                db.Entry(t).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
                 return t;
             }
         }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HSRestAPI_DLL.Entities;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace HSRestAPI_DLL.DB
 {
@@ -21,7 +22,7 @@ namespace HSRestAPI_DLL.DB
         public DbSet<Hairdresser> Hairdressers { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<ServiceOffered> ServicesOffered { get; set; }
-        public DbSet<User> Users { get; set; }
+        //public DbSet<User> Users { get; set; }
         public DbSet<TimeRange> TimeRanges { get; set; }
 
 

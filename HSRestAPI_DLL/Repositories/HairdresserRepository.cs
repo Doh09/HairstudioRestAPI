@@ -79,10 +79,12 @@ namespace HSRestAPI_DLL.Repositories
                             eh.WorkingDays.Add(w);
                         }
                     }
-                    eh.Password = t.Password;
-                    eh.UserType = t.UserType;
                     eh.PhoneNumber = t.PhoneNumber;
+                    eh.Email = t.Email;
                     eh.Username = t.Username;
+                    eh.Name = t.Name;
+                    //TODO ?
+
 
                     if (t.Appointments != null)
                         foreach (var a in t.Appointments)

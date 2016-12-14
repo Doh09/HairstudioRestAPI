@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace HSRestAPI_DLL.Entities
 {
-    public abstract class AbstractEntity
+    public interface IEntity
     {
-        public int ID { get; set; }
+        int ID { get; set; }
     }
 }

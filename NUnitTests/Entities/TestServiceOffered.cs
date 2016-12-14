@@ -13,7 +13,7 @@ namespace NUnitTests.Entities
         [Test]
         public void TestProperties()
         {
-            /*ServiceOffered : AbstractEntity
+            /*ServiceOffered : IEntity
             - Message
             - Price
              */

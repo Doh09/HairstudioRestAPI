@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace HSRestAPI_DLL.Entities
 {
-    public class Message : AbstractEntity
+    public class Message : IEntity
     {
-        /*Message (for website, e.g. welcome messagge) : AbstractEntity
+        #region IEntity
+        public int ID { get; set; }
+        #endregion
+        /*Message (for website, e.g. welcome messagge) : IEntity
         - Description
         */
         public string Description { get; set; }

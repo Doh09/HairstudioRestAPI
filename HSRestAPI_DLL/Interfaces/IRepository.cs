@@ -3,7 +3,7 @@ using HSRestAPI_DLL.Entities;
 
 namespace HSRestAPI_DLL.Interfaces
 {
-    public interface IRepository<T> where T : AbstractEntity
+    public interface IRepository<T> where T : IEntity
     {
         /// <summary>
         /// Get a list of all objects the Repository holds.

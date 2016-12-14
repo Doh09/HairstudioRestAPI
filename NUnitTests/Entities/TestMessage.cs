@@ -13,7 +13,7 @@ namespace NUnitTests.Entities
         [Test]
         public void TestProperties()
         {
-            /*Message (for website, e.g. welcome messagge) : AbstractEntity
+            /*Message (for website, e.g. welcome messagge) : IEntity
             - Description
              */
             Message message = new Message();

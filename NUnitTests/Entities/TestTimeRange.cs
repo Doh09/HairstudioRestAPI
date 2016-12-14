@@ -13,7 +13,7 @@ namespace NUnitTests.Entities
         [Test]
         public void TestProperties()
         {
-            /*TimeRange : AbstractEntity
+            /*TimeRange : IEntity
             - Start time
             - End time
              */

@@ -14,7 +14,7 @@ namespace HSRestAPI_DLL.Entities
         - Appointments
          */
 
-        
+
         public virtual List<TimeRange> WorkingDays { get; set; } = new List<TimeRange>();
         //public List<TimeRange> WorkingDays = new List<TimeRange>();
         public virtual List<Appointment> Appointments { get; set; } = new List<Appointment>();

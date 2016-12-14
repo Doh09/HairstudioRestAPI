@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HSRestAPI_DLL.DB;
 using HSRestAPI_DLL.Entities;
 using HSRestAPI_DLL.Interfaces;
 
@@ -10,34 +11,50 @@ namespace HSRestAPI_DLL.Repositories
 {//TODO
     class ServiceOfferedRepository : IRepository<ServiceOffered>
     {
-        public List<ServiceOffered> GetAll()
+        public ServiceOffered Create(ServiceOffered t)
         {
-            throw new NotImplementedException();
+            using (var db = new HairstudioDBContext())
+            {
+                db.ServicesOffered.Add(t);
+                db.SaveChanges();
+                return t;
+            }
         }
 
         public ServiceOffered Get(int id)
         {
-            throw new NotImplementedException();
+            using (var db = new HairstudioDBContext())
+            {
+                return db.ServicesOffered.FirstOrDefault(x => x.ID == id);
+            }
         }
 
-        public ServiceOffered Get(string email)
+        public List<ServiceOffered> GetAll()
         {
-            throw new NotImplementedException();
+            using (var db = new HairstudioDBContext())
+            {
+                return db.ServicesOffered.ToList();
+            }
         }
 
         public bool Remove(ServiceOffered t)
         {
-            throw new NotImplementedException();
+            using (var db = new HairstudioDBContext())
+            {
+                db.Entry(t).State = System.Data.Entity.EntityState.Deleted;
+                db.SaveChanges();
+                return true;
+            }
         }
 
         public ServiceOffered Update(ServiceOffered t)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ServiceOffered Create(ServiceOffered t)
-        {
-            throw new NotImplementedException();
+        {//TODO
+            using (var db = new HairstudioDBContext())
+            {
+                db.Entry(t).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return t;
+            }
         }
     }
 }
