@@ -24,10 +24,10 @@ namespace NUnitTests.Entities
                 {
 
                 };
-            serviceOffered.Message = m;
+            serviceOffered.Message = "test";
             serviceOffered.Price = 159.99;
             Assert.AreEqual(serviceOffered.ID, 0);
-            Assert.AreEqual(serviceOffered.Message, m);
+            Assert.AreEqual(serviceOffered.Message, "test");
             Assert.AreEqual(serviceOffered.Price, 159.99);
         }
     }
