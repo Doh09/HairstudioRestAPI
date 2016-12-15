@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,9 +53,13 @@ namespace HSRestAPI_DLL.Repositories
         {//TODO
             using (var db = new HairstudioDBContext())
             {
-                db.Entry(t).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
-                return t;
+                var em = db.Messages.FirstOrDefault(x => x.ID == t.ID);
+                if (em != null)
+                {
+                    em.Description = t.Description;
+                    db.SaveChanges();
+                }
+                return em;
             }
         }
     }
