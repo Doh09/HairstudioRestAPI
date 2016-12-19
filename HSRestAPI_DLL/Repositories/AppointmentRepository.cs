@@ -32,7 +32,7 @@ namespace HSRestAPI_DLL.Repositories
         }
         public Appointment Create(Appointment t)
         {
-            using (db)
+            using (db = new HairstudioDBContext())
             {
                 var hairdresser = db.Hairdressers.FirstOrDefault(x => x.ID == t.Hairdresser.ID);
                 var customer = db.Customers.FirstOrDefault(x => x.ID == t.Customer.ID);                
@@ -46,7 +46,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public Appointment Get(int id)
         {
-            using (db)
+            using (db = new HairstudioDBContext())
             {
                 return db.Appointments
                     .Include(t => t.TimeRange)
@@ -58,7 +58,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public IList<Appointment> GetAll()
         {
-            using (db)
+            using (db = new HairstudioDBContext())
             {
                 return db.Appointments
                     .Include(t => t.TimeRange)
@@ -70,7 +70,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public bool Remove(Appointment t)
         {
-            using (db)
+            using (db = new HairstudioDBContext())
             {
                 db.Entry(t).State = System.Data.Entity.EntityState.Deleted;
                 db.SaveChanges();
@@ -80,7 +80,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public Appointment Update(Appointment t)
         {//TODO
-            using (db)
+            using (db = new HairstudioDBContext())
             {
                 var ea = db.Appointments //ea = existing appointment
                     .Include(a => a.Hairdresser)
@@ -89,11 +89,14 @@ namespace HSRestAPI_DLL.Repositories
                     .FirstOrDefault(x => x.ID == t.ID);
                 var hairdresser = db.Hairdressers.FirstOrDefault(x => x.ID == t.Hairdresser.ID);
                 var customer = db.Customers.FirstOrDefault(x => x.ID == t.Customer.ID);
-                ea.Hairdresser = hairdresser;
-                ea.Customer = customer;
-                ea.TimeRange.TheDate = t.TimeRange.TheDate;
-                ea.TimeRange.EndTime = t.TimeRange.EndTime;
-                ea.TimeRange.StartTime = t.TimeRange.StartTime;
+                if (ea != null)
+                {
+                    ea.Hairdresser = hairdresser;
+                    ea.Customer = customer;
+                    ea.TimeRange.TheDate = t.TimeRange.TheDate;
+                    ea.TimeRange.EndTime = t.TimeRange.EndTime;
+                    ea.TimeRange.StartTime = t.TimeRange.StartTime;
+                }
                 //var objectStateManager = ((IObjectContextAdapter)db).ObjectContext.ObjectStateManager;
                 //objectStateManager.ChangeObjectState(ea, EntityState.Modified);
                 db.SaveChanges();

@@ -29,7 +29,7 @@ namespace HSRestAPI_DLL.Repositories
         }
         public TimeRange Create(TimeRange t)
         {
-            using (db)
+            using (db = new HairstudioDBContext())
             {
                 db.TimeRanges.Add(t);
                 db.SaveChanges();
@@ -39,7 +39,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public TimeRange Get(int id)
         {
-            using (db)
+            using (db = new HairstudioDBContext())
             {
                 return db.TimeRanges.FirstOrDefault(x => x.ID == id);
             }
@@ -47,7 +47,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public IList<TimeRange> GetAll()
         {
-            using (db)
+            using (db = new HairstudioDBContext())
             {
                 return db.TimeRanges.ToList();
             }
@@ -55,7 +55,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public bool Remove(TimeRange t)
         {
-            using (db)
+            using (db = new HairstudioDBContext())
             {
                 db.Entry(t).State = System.Data.Entity.EntityState.Deleted;
                 db.SaveChanges();
@@ -65,7 +65,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public TimeRange Update(TimeRange t)
         {//TODO
-            using (db)
+            using (db = new HairstudioDBContext())
             {
                 db.Entry(t).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();

@@ -32,7 +32,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public Message Create(Message t)
         {
-            using (db)
+            using (db = new HairstudioDBContext())
             {
                 db.Messages.Add(t);
                 db.SaveChanges();
@@ -42,7 +42,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public Message Get(int id)
         {
-            using (db)
+            using (db = new HairstudioDBContext())
             {
                 return db.Messages.FirstOrDefault(x => x.ID == id);
             }
@@ -50,7 +50,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public IList<Message> GetAll()
         {
-            using (db)
+            using (db = new HairstudioDBContext())
             {
                 return db.Messages.ToList();
             }
@@ -58,7 +58,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public bool Remove(Message t)
         {
-            using (db)
+            using (db = new HairstudioDBContext())
             {
                 db.Entry(t).State = System.Data.Entity.EntityState.Deleted;
                 db.SaveChanges();
@@ -68,7 +68,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public Message Update(Message t)
         {//TODO
-            using (db)
+            using (db = new HairstudioDBContext())
             {
                 var em = db.Messages.FirstOrDefault(x => x.ID == t.ID);
                 if (em != null)

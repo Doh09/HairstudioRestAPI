@@ -32,7 +32,7 @@ namespace HSRestAPI_DLL.Repositories
         }
         public IList<Hairdresser> GetAll()
         {
-            using (db)
+            using (db = new HairstudioDBContext())
             {
                 return db.Hairdressers
                     .Include(h => h.Appointments.Select(c => c.TimeRange))
@@ -44,7 +44,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public Hairdresser Get(int id)
         {
-            using (db)
+            using (db = new HairstudioDBContext())
             {
                 var hairdresser = db.Hairdressers
                     .Include(h => h.Appointments.Select(c => c.TimeRange))
@@ -57,7 +57,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public bool Remove(Hairdresser t)
         {
-            using (db)
+            using (db = new HairstudioDBContext())
             {
                 db.Entry(db.Hairdressers.FirstOrDefault(x => x.ID == t.ID)).State = System.Data.Entity.EntityState.Deleted;
                 db.SaveChanges();
@@ -67,7 +67,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public Hairdresser Update(Hairdresser t)
         {//TODO
-            using (db)
+            using (db = new HairstudioDBContext())
             {
                 var eh = db.Hairdressers
                     .Include(h => h.Appointments)
@@ -116,7 +116,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public Hairdresser Create(Hairdresser t)
         {
-            using (db)
+            using (db = new HairstudioDBContext())
             {
 
                 db.Hairdressers.Add(t);

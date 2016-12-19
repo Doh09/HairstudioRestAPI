@@ -29,7 +29,7 @@ namespace HSRestAPI_DLL.Repositories
         }
         public ServiceOffered Create(ServiceOffered t)
         {
-            using (db)
+            using (db = new HairstudioDBContext())
             {
                 db.ServicesOffered.Add(t);
                 db.SaveChanges();
@@ -39,7 +39,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public ServiceOffered Get(int id)
         {
-            using (db)
+            using (db = new HairstudioDBContext())
             {
                 return db.ServicesOffered.FirstOrDefault(x => x.ID == id);
             }
@@ -47,7 +47,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public IList<ServiceOffered> GetAll()
         {
-            using (db)
+            using (db = new HairstudioDBContext())
             {
                 return db.ServicesOffered.ToList();
             }
@@ -55,7 +55,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public bool Remove(ServiceOffered t)
         {
-            using (db)
+            using (db = new HairstudioDBContext())
             {
                 db.Entry(t).State = System.Data.Entity.EntityState.Deleted;
                 db.SaveChanges();
@@ -65,7 +65,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public ServiceOffered Update(ServiceOffered t)
         {//TODO
-            using (db)
+            using (db = new HairstudioDBContext())
             {
                 db.Entry(t).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
