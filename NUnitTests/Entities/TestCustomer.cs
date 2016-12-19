@@ -14,33 +14,22 @@ namespace NUnitTests.Entities
         [Test]
         public void TestProperties()
         {
-            /*Customer : User //ID and other variables inherited are tested in User.
+            /*Customer : User //ID and other inherited variables are tested in User.
             - Appointments
              */
-            //Customer customer = new Customer();
+
+            Customer customer = new Customer();
+            customer.Appointments = new List<Appointment>();
+            //Appointment is tested further in its own test class
             Appointment appointment1 = new Appointment();
-            appointment1.ID = -1;
-            appointment1.TimeRange.StartTime = DateTime.Now;
-            appointment1.TimeRange.EndTime = appointment1.TimeRange.StartTime; //Fix
-            appointment1.TimeRange.EndTime.AddMinutes(30);
-            //appointment1.Hairdresser = new Hairdresser();
-            //appointment1.Customer = new Customer();
-
+            appointment1.ID = 1;
             Appointment appointment2 = new Appointment();
-            appointment2.ID = 1;
-            appointment2.TimeRange.StartTime = DateTime.Now;
-            appointment2.TimeRange.StartTime.AddMinutes(30);
-            appointment2.TimeRange.EndTime = appointment2.TimeRange.StartTime; //Fix
-            //appointment2.TimeRange.EndTime.AddMinutes(30);
-            //appointment2.Hairdresser = new Hairdresser();
-            //appointment2.Customer = new Customer();
+            appointment2.ID = 2;
 
-            ////Test if appointments can be addded and retrieved correctly.
-            //customer.Appointments.Add(appointment1);
-            //customer.Appointments.Add(appointment2);
-            //Assert.AreSame(appointment1, customer.Appointments(appointment1.TimeRange.GetDate()));
-            //Assert.AreSame(appointment2, customer.GetAppointment(appointment2.TimeRange.GetDate()));
-            //List of appointments for the given day.
+            Assert.IsNotNull(customer.Appointments);
+            customer.Appointments.Add(appointment1);
+            customer.Appointments.Add(appointment2);
+            Assert.AreEqual(customer.Appointments.Count, 2);
         }
     }
 }

@@ -11,9 +11,25 @@ namespace HSRestAPI_DLL.Repositories
 {//TODO
     class ServiceOfferedRepository : IRepository<ServiceOffered>
     {
+        private HairstudioDBContext db;
+        /// <summary>
+        /// Method where the HairstudioDBContext used by this repository is set.
+        /// </summary>
+        /// <param name="ctx"></param>
+        public void SetContext(HairstudioDBContext ctx)
+        {
+            db = ctx;
+        }
+        /// <summary>
+        /// Constructor where a new DBContext is created
+        /// </summary>
+        public ServiceOfferedRepository()
+        {
+            db = new HairstudioDBContext();
+        }
         public ServiceOffered Create(ServiceOffered t)
         {
-            using (var db = new HairstudioDBContext())
+            using (db)
             {
                 db.ServicesOffered.Add(t);
                 db.SaveChanges();
@@ -23,15 +39,15 @@ namespace HSRestAPI_DLL.Repositories
 
         public ServiceOffered Get(int id)
         {
-            using (var db = new HairstudioDBContext())
+            using (db)
             {
                 return db.ServicesOffered.FirstOrDefault(x => x.ID == id);
             }
         }
 
-        public List<ServiceOffered> GetAll()
+        public IList<ServiceOffered> GetAll()
         {
-            using (var db = new HairstudioDBContext())
+            using (db)
             {
                 return db.ServicesOffered.ToList();
             }
@@ -39,7 +55,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public bool Remove(ServiceOffered t)
         {
-            using (var db = new HairstudioDBContext())
+            using (db)
             {
                 db.Entry(t).State = System.Data.Entity.EntityState.Deleted;
                 db.SaveChanges();
@@ -49,7 +65,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public ServiceOffered Update(ServiceOffered t)
         {//TODO
-            using (var db = new HairstudioDBContext())
+            using (db)
             {
                 db.Entry(t).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();

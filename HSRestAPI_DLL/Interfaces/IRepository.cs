@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using HSRestAPI_DLL.DB;
 using HSRestAPI_DLL.Entities;
 
 namespace HSRestAPI_DLL.Interfaces
@@ -6,10 +7,15 @@ namespace HSRestAPI_DLL.Interfaces
     public interface IRepository<T> where T : IEntity
     {
         /// <summary>
+        /// Method where the HairstudioDBContext used by this repository is set.
+        /// </summary>
+        /// <param name="ctx"></param>
+        void SetContext(HairstudioDBContext ctx);
+        /// <summary>
         /// Get a list of all objects the Repository holds.
         /// </summary>
         /// <returns></returns>
-        List<T> GetAll();
+        IList<T> GetAll();
 
         /// <summary>
         /// Get a single object, based on its ID.

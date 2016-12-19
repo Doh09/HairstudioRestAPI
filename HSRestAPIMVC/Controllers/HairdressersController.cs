@@ -21,7 +21,7 @@ namespace HSRestAPIMVC.Controllers
 
         // GET: api/Hairdressers
         [HttpGet]
-        public List<Hairdresser> GetUsers()
+        public IList<Hairdresser> GetUsers()
         {
             return _hr.GetAll();
         }

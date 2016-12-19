@@ -12,9 +12,25 @@ namespace HSRestAPI_DLL.Repositories
 {//TODO
     class CustomerRepository : IRepository<Customer>
     {
-        public List<Customer> GetAll()
+        private HairstudioDBContext db;
+        /// <summary>
+        /// Method where the HairstudioDBContext used by this repository is set.
+        /// </summary>
+        /// <param name="ctx"></param>
+        public void SetContext(HairstudioDBContext ctx)
         {
-            using (var db = new HairstudioDBContext())
+            db = ctx;
+        }
+        /// <summary>
+        /// Constructor where a new DBContext is created
+        /// </summary>
+        public CustomerRepository()
+        {
+            db = new HairstudioDBContext();
+        }
+        public IList<Customer> GetAll()
+        {
+            using (db)
             {
                 return db.Customers
                     .Include(h => h.Appointments.Select(c => c.TimeRange))
@@ -27,7 +43,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public Customer Get(int id)
         {
-            using (var db = new HairstudioDBContext())
+            using (db)
             {
                 return db.Customers
                     .Include(h => h.Appointments.Select(c => c.TimeRange))
@@ -39,7 +55,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public bool Remove(Customer t)
         {
-            using (var db = new HairstudioDBContext())
+            using (db)
             {
                 db.Entry(db.Customers.FirstOrDefault(x => x.ID == t.ID)).State = System.Data.Entity.EntityState.Deleted;
                 db.SaveChanges();
@@ -49,7 +65,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public Customer Update(Customer t)
         {
-            using (var db = new HairstudioDBContext())
+            using (db)
             {
                 db.Entry(t).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
@@ -59,7 +75,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public Customer Create(Customer t)
         {
-            using (var db = new HairstudioDBContext())
+            using (db)
             {
                 db.Customers.Add(t);
                 db.SaveChanges();

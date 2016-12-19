@@ -14,19 +14,16 @@ namespace NUnitTests.Entities
         public void TestProperties()
         {
             /*ServiceOffered : IEntity
+            - ID
             - Message
             - Price
              */
             ServiceOffered serviceOffered = new ServiceOffered();
-            serviceOffered.ID = 0;
-            Message m =
-                new Message()
-                {
-
-                };
+            serviceOffered.ID = 1;
             serviceOffered.Message = "test";
             serviceOffered.Price = 159.99;
-            Assert.AreEqual(serviceOffered.ID, 0);
+            
+            Assert.AreEqual(serviceOffered.ID, 1);
             Assert.AreEqual(serviceOffered.Message, "test");
             Assert.AreEqual(serviceOffered.Price, 159.99);
         }

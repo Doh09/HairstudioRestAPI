@@ -11,9 +11,25 @@ namespace HSRestAPI_DLL.Repositories
 {//TODO
     class TimeRangeRepository : IRepository<TimeRange>
     {
+        private HairstudioDBContext db;
+        /// <summary>
+        /// Method where the HairstudioDBContext used by this repository is set.
+        /// </summary>
+        /// <param name="ctx"></param>
+        public void SetContext(HairstudioDBContext ctx)
+        {
+            db = ctx;
+        }
+        /// <summary>
+        /// Constructor where a new DBContext is created
+        /// </summary>
+        public TimeRangeRepository()
+        {
+            db = new HairstudioDBContext();
+        }
         public TimeRange Create(TimeRange t)
         {
-            using (var db = new HairstudioDBContext())
+            using (db)
             {
                 db.TimeRanges.Add(t);
                 db.SaveChanges();
@@ -23,15 +39,15 @@ namespace HSRestAPI_DLL.Repositories
 
         public TimeRange Get(int id)
         {
-            using (var db = new HairstudioDBContext())
+            using (db)
             {
                 return db.TimeRanges.FirstOrDefault(x => x.ID == id);
             }
         }
 
-        public List<TimeRange> GetAll()
+        public IList<TimeRange> GetAll()
         {
-            using (var db = new HairstudioDBContext())
+            using (db)
             {
                 return db.TimeRanges.ToList();
             }
@@ -39,7 +55,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public bool Remove(TimeRange t)
         {
-            using (var db = new HairstudioDBContext())
+            using (db)
             {
                 db.Entry(t).State = System.Data.Entity.EntityState.Deleted;
                 db.SaveChanges();
@@ -49,7 +65,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public TimeRange Update(TimeRange t)
         {//TODO
-            using (var db = new HairstudioDBContext())
+            using (db)
             {
                 db.Entry(t).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();

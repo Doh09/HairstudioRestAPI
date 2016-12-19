@@ -20,7 +20,7 @@ namespace HSRestAPIMVC.Controllers
         private readonly IRepository<Appointment> _ar = new Facade().GetAppointmentRepository();
 
         // GET: api/Appointments
-        public List<Appointment> GetAppointments()
+        public IList<Appointment> GetAppointments()
         {
             return _ar.GetAll();
         }

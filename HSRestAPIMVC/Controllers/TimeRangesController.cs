@@ -20,7 +20,7 @@ namespace HSRestAPIMVC.Controllers
         private readonly IRepository<TimeRange> _tr = new Facade().GetTimeRangeRepository();
 
         // GET: api/TimeRanges
-        public List<TimeRange> GetTimeRanges()
+        public IList<TimeRange> GetTimeRanges()
         {
             return _tr.GetAll();
         }

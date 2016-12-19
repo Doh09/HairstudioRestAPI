@@ -20,7 +20,7 @@ namespace HSRestAPIMVC.Controllers
         private readonly IRepository<Customer> _cr = new Facade().GetCustomerRepository();
 
         // GET: api/Customers
-        public List<Customer> GetUsers()
+        public IList<Customer> GetUsers()
         {
             return _cr.GetAll();
         }

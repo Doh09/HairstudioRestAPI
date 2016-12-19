@@ -20,7 +20,7 @@ namespace HSRestAPIMVC.Controllers
         private readonly IRepository<Message> _mr = new Facade().GetMessageRepository();
 
         // GET: api/Messages
-        public List<Message> GetMessages()
+        public IList<Message> GetMessages()
         {
             return _mr.GetAll();
         }

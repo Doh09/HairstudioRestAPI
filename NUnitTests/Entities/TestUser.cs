@@ -15,6 +15,7 @@ namespace NUnitTests.Entities
         public void TestProperties()
         {
             /*User : IEntity
+            - ID
             - Username
             - Password
             - Name
@@ -22,6 +23,7 @@ namespace NUnitTests.Entities
             - Email
             - UserType(string)*/
             User user = new User();
+            //Assert that all simple properties do as expected.
             user.ID = 0;
             user.Username = "Username";
             user.Password = "passWord";

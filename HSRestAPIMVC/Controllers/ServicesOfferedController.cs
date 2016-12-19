@@ -20,7 +20,7 @@ namespace HSRestAPIMVC.Controllers
         private readonly IRepository<ServiceOffered> _sor = new Facade().GetServiceOfferedRepository();
 
         // GET: api/ServicesOffered
-        public List<ServiceOffered> GetServicesOffered()
+        public IList<ServiceOffered> GetServicesOffered()
         {
             return _sor.GetAll();
         }

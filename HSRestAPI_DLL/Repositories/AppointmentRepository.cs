@@ -14,25 +14,41 @@ namespace HSRestAPI_DLL.Repositories
 {//TODO
     class AppointmentRepository : IRepository<Appointment>
     {
+        private HairstudioDBContext db;
+        /// <summary>
+        /// Method where the HairstudioDBContext used by this repository is set.
+        /// </summary>
+        /// <param name="ctx"></param>
+        public void SetContext(HairstudioDBContext ctx)
+        {
+            db = ctx;
+        }
+        /// <summary>
+        /// Constructor where a new DBContext is created
+        /// </summary>
+        public AppointmentRepository()
+        {
+            db = new HairstudioDBContext();
+        }
         public Appointment Create(Appointment t)
         {
-            using (var ctx = new HairstudioDBContext())
+            using (db)
             {
-                var hairdresser = ctx.Hairdressers.FirstOrDefault(x => x.ID == t.Hairdresser.ID);
-                var customer = ctx.Customers.FirstOrDefault(x => x.ID == t.Customer.ID);                
+                var hairdresser = db.Hairdressers.FirstOrDefault(x => x.ID == t.Hairdresser.ID);
+                var customer = db.Customers.FirstOrDefault(x => x.ID == t.Customer.ID);                
                 t.Hairdresser = hairdresser;
                 t.Customer = customer;
-                ctx.Appointments.Add(t);
-                ctx.SaveChanges();
+                db.Appointments.Add(t);
+                db.SaveChanges();
                 return t;
             }
         }
 
         public Appointment Get(int id)
         {
-            using (var ctx = new HairstudioDBContext())
+            using (db)
             {
-                return ctx.Appointments
+                return db.Appointments
                     .Include(t => t.TimeRange)
                     .Include(t => t.Hairdresser)
                     .Include(t => t.Customer)
@@ -40,11 +56,11 @@ namespace HSRestAPI_DLL.Repositories
             }
         }
 
-        public List<Appointment> GetAll()
+        public IList<Appointment> GetAll()
         {
-            using (var ctx = new HairstudioDBContext())
+            using (db)
             {
-                return ctx.Appointments
+                return db.Appointments
                     .Include(t => t.TimeRange)
                     .Include(t => t.Hairdresser)
                     .Include(t => t.Customer)
@@ -54,34 +70,33 @@ namespace HSRestAPI_DLL.Repositories
 
         public bool Remove(Appointment t)
         {
-            using (var ctx = new HairstudioDBContext())
+            using (db)
             {
-                ctx.Entry(t).State = System.Data.Entity.EntityState.Deleted;
-                ctx.SaveChanges();
+                db.Entry(t).State = System.Data.Entity.EntityState.Deleted;
+                db.SaveChanges();
                 return true;
             }
         }
 
         public Appointment Update(Appointment t)
         {//TODO
-            using (var ctx = new HairstudioDBContext())
+            using (db)
             {
-                var ea = ctx.Appointments //ea = existing appointment
+                var ea = db.Appointments //ea = existing appointment
                     .Include(a => a.Hairdresser)
                     .Include(a => a.Customer)
                     .Include(a => a.TimeRange)
                     .FirstOrDefault(x => x.ID == t.ID);
-                var hairdresser = ctx.Hairdressers.FirstOrDefault(x => x.ID == t.Hairdresser.ID);
-                var customer = ctx.Customers.FirstOrDefault(x => x.ID == t.Customer.ID);
+                var hairdresser = db.Hairdressers.FirstOrDefault(x => x.ID == t.Hairdresser.ID);
+                var customer = db.Customers.FirstOrDefault(x => x.ID == t.Customer.ID);
                 ea.Hairdresser = hairdresser;
                 ea.Customer = customer;
-                EntityUpdater.UpdateAppointment(ea, t);
-                var objectStateManager = ((IObjectContextAdapter)ctx).ObjectContext.ObjectStateManager;
-                objectStateManager.ChangeObjectState(ea, EntityState.Modified);
-                //ea.TimeRange.TheDate = t.TimeRange.TheDate; //<--- Works, with only a.TimeRange included.
-                //ea.Hairdresser = t.Hairdresser; //check if new hairdresser/customer is made, 
-                //or system is intelligent and knows from ID not to create more tables.
-                ctx.SaveChanges();
+                ea.TimeRange.TheDate = t.TimeRange.TheDate;
+                ea.TimeRange.EndTime = t.TimeRange.EndTime;
+                ea.TimeRange.StartTime = t.TimeRange.StartTime;
+                //var objectStateManager = ((IObjectContextAdapter)db).ObjectContext.ObjectStateManager;
+                //objectStateManager.ChangeObjectState(ea, EntityState.Modified);
+                db.SaveChanges();
                 return t;
             }
         }

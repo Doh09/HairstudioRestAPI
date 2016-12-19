@@ -22,7 +22,6 @@ namespace HSRestAPI_DLL.DB
         public DbSet<Hairdresser> Hairdressers { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<ServiceOffered> ServicesOffered { get; set; }
-        //public DbSet<User> Users { get; set; }
         public DbSet<TimeRange> TimeRanges { get; set; }
 
 
@@ -31,14 +30,12 @@ namespace HSRestAPI_DLL.DB
             modelBuilder.Entity<Appointment>()
                 .HasRequired(m => m.Hairdresser)
                 .WithMany(t => t.Appointments)
-                        //.HasForeignKey(m => m.Hairdresser.ID)
                         .WillCascadeOnDelete(false)
                         ;
 
             modelBuilder.Entity<Appointment>()
                 .HasRequired(m => m.Customer)
                 .WithMany(t => t.Appointments)
-                        //.HasForeignKey(m => m.Customer.ID)
                         .WillCascadeOnDelete(false)
                         ;
             

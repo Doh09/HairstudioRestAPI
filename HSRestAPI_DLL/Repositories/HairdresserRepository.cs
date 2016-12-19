@@ -14,9 +14,25 @@ namespace HSRestAPI_DLL.Repositories
     public class HairdresserRepository : IRepository<Hairdresser>
     //TODO
     {
-        public List<Hairdresser> GetAll()
+        private HairstudioDBContext db;
+        /// <summary>
+        /// Method where the HairstudioDBContext used by this repository is set.
+        /// </summary>
+        /// <param name="ctx"></param>
+        public void SetContext(HairstudioDBContext ctx)
         {
-            using (var db = new HairstudioDBContext())
+            db = ctx;
+        }
+        /// <summary>
+        /// Constructor where a new DBContext is created
+        /// </summary>
+        public HairdresserRepository()
+        {
+            db = new HairstudioDBContext();
+        }
+        public IList<Hairdresser> GetAll()
+        {
+            using (db)
             {
                 return db.Hairdressers
                     .Include(h => h.Appointments.Select(c => c.TimeRange))
@@ -28,7 +44,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public Hairdresser Get(int id)
         {
-            using (var db = new HairstudioDBContext())
+            using (db)
             {
                 var hairdresser = db.Hairdressers
                     .Include(h => h.Appointments.Select(c => c.TimeRange))
@@ -41,7 +57,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public bool Remove(Hairdresser t)
         {
-            using (var db = new HairstudioDBContext())
+            using (db)
             {
                 db.Entry(db.Hairdressers.FirstOrDefault(x => x.ID == t.ID)).State = System.Data.Entity.EntityState.Deleted;
                 db.SaveChanges();
@@ -51,7 +67,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public Hairdresser Update(Hairdresser t)
         {//TODO
-            using (var db = new HairstudioDBContext())
+            using (db)
             {
                 var eh = db.Hairdressers
                     .Include(h => h.Appointments)
@@ -79,12 +95,11 @@ namespace HSRestAPI_DLL.Repositories
                             eh.WorkingDays.Add(w);
                         }
                     }
+                    //Password, usertype and ID are not to be changed here.
                     eh.PhoneNumber = t.PhoneNumber;
                     eh.Email = t.Email;
                     eh.Username = t.Username;
                     eh.Name = t.Name;
-                    //TODO ?
-
 
                     if (t.Appointments != null)
                         foreach (var a in t.Appointments)
@@ -92,17 +107,6 @@ namespace HSRestAPI_DLL.Repositories
                             eh.Appointments.Add(db.Appointments.FirstOrDefault(x => x.ID == a.ID));
                         }
                 }
-
-                //db.Entry(existingHairdresser).State = EntityState.Modified;
-
-                //foreach (var a in existingHairdresser.Appointments)
-                //{
-                //    db.Entry(a).State = EntityState.Modified;
-                //}
-                //foreach (var w in existingHairdresser.WorkingDays)
-                //{
-                //    db.Entry(w).State = EntityState.Modified;
-                //}
 
                 db.SaveChanges();
 
@@ -112,7 +116,7 @@ namespace HSRestAPI_DLL.Repositories
 
         public Hairdresser Create(Hairdresser t)
         {
-            using (var db = new HairstudioDBContext())
+            using (db)
             {
 
                 db.Hairdressers.Add(t);

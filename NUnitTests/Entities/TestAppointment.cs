@@ -15,22 +15,20 @@ namespace NUnitTests.Entities
         public void TestProperties()
         {
             /*Appointment : IEntity
-            - Appointment start time
-            - Appointment end time
-            - HairdresserID
-            - CustomerID
+            - ID
+            - TimeRange
+            - Hairdresser
+            - Customer
              */
             Appointment appointment = new Appointment();
-            appointment.ID = -1;
-            appointment.TimeRange.StartTime = DateTime.Now;
-            appointment.TimeRange.EndTime = appointment.TimeRange.StartTime; //Fix
-            appointment.TimeRange.EndTime.AddMinutes(30);
+            appointment.ID = 1;
+            appointment.TimeRange = new TimeRange();
             appointment.Hairdresser = new Hairdresser();
             appointment.Customer = new Customer();
-
-            Assert.AreEqual(appointment.ID, -1);
-            Assert.AreEqual(appointment.TimeRange.StartTime.Date, DateTime.Now.Date);
-            Assert.AreEqual(appointment.TimeRange.EndTime.Date, DateTime.Now.Date);
+            
+            Assert.AreEqual(appointment.ID, 1);
+            //Entity variables are tested more in their own test classes.
+            Assert.IsNotNull(appointment.TimeRange);
             Assert.IsNotNull(appointment.Hairdresser);
             Assert.IsNotNull(appointment.Customer);
         }

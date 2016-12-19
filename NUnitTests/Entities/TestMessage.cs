@@ -14,13 +14,17 @@ namespace NUnitTests.Entities
         public void TestProperties()
         {
             /*Message (for website, e.g. welcome messagge) : IEntity
+            - ID
             - Description
+            - AreaMessageIsUsed
              */
             Message message = new Message();
-            message.ID = 0;
+            message.ID = 1;
             message.Description = "Message Description";
-            Assert.AreEqual(message.ID, 0);
+            message.AreaMessageIsUsed = "Area";
+            Assert.AreEqual(message.ID, 1);
             Assert.AreEqual(message.Description, "Message Description");
+            Assert.AreEqual(message.AreaMessageIsUsed, "Area");
         }
     }
 }
