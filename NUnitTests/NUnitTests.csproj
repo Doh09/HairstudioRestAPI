@@ -79,7 +79,6 @@
     <Compile Include="Entities\TestUser.cs" />
     <Compile Include="Entities\TestTimeRange.cs" />
     <Compile Include="Repositories\TestHairdresserRepository.cs" />
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

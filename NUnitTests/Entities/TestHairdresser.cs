@@ -19,7 +19,7 @@ namespace NUnitTests.Entities
             - Appointments
              */
             Hairdresser hairdresser = new Hairdresser();
-            //Other entities are tested further in their own test class
+            //OtheC:\Users\Alex\Documents\GitHub\HairstudioRestAPI\HSRestAPIMVC\packages.configr entities are tested further in their own test class
             //Appointments
             Appointment appointment1 = new Appointment();
             appointment1.ID = 1;
