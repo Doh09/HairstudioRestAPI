@@ -23,7 +23,8 @@ namespace NUnitTests.Entities
             timeRange.ID = 1;
             timeRange.TheDate = DateTime.Now;
             timeRange.StartTime = DateTime.Now;
-            timeRange.EndTime = DateTime.Now; //Fix
+            timeRange.EndTime = DateTime.Now;
+
             timeRange.EndTime.AddHours(8);
 
             Assert.AreEqual(timeRange.ID, 1);
